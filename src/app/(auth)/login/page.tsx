@@ -55,7 +55,6 @@ const LoginPage = () => {
 
             if (response.status === 200) {
                 const { access_token } = response.data.data;
-                console.log('Login successful : ', access_token);
                 localStorage.setItem('access_token', access_token);
                 Axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
                 router.push('/');
