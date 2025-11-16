@@ -53,7 +53,7 @@ export default function Home() {
   }
 
   if (loading) return <div>Loading...</div>;
-  if (!userAuth) return router.push('/login');
+  if (!userAuth) return <div>Unauthorized</div>;
 
   return (
     <div className="container mx-auto px-4 py-20 min-h-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
