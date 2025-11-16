@@ -9,7 +9,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { userAuth, loading } = useAuth();
 
   useEffect(() => {
-    if (!loading && !userAuth) {
+    if (!userAuth) {
       router.push('/login');
     }
   }, [userAuth, loading, router]);
