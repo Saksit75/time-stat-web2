@@ -95,7 +95,7 @@ const AttendanceHis = () => {
             title: 'คุณแน่ใจหรือไม่?',
             text: `คุณต้องการลบข้อมูล ${thaiDate(new Date(date))} หรือไม่!`,
             theme: isDark ? 'dark' : 'light',
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

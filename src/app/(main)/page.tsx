@@ -28,7 +28,7 @@ export default function Home() {
 
   const handleLogout = async () => {
     const result = await Swal.fire({
-      icon: 'warning',
+      icon: 'question',
       title: 'ยืนยันการออกจากระบบ',
       text: 'คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?',
       showCancelButton: true,

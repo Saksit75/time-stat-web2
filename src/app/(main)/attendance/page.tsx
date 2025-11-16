@@ -230,7 +230,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   const handleClear = async () => {
     await Swal.fire({
-      icon: 'warning',
+      icon: 'question',
       title: 'ยืนยันการล้างข้อมูล',
       text: 'คุณแน่ใจหรือไม่ว่าต้องการล้างข้อมูลทั้งหมด?',
       showCancelButton: true,
