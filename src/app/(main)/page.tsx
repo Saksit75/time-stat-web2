@@ -52,11 +52,14 @@ export default function Home() {
     });
   }
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="flex item-center justify-center h-screen">
+    <div>Loading...</div>
+    <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div>
+  </div>
   if (!userAuth) return <div className="flex item-center justify-center h-screen">
     <div>Unauthorized</div>
     <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div>
-  </div>;
+  </div>
 
   return (
     <div className="container mx-auto px-4 py-20 min-h-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
