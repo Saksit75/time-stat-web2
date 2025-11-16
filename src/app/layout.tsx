@@ -9,7 +9,7 @@ const thaiSarabun = Sarabun({
 })
 
 export const metadata: Metadata = {
-  title: "Time Stat Dev",
+  title: "Time Stat",
   description: "ระบบบันทึกข้อมูลการมาเรียน",
     icons: {
     icon: '/favicon.ico',

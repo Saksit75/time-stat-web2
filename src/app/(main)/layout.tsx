@@ -10,7 +10,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!loading && !userAuth) {
-      alert('กรุณาเข้าสู่ระบบ');
       router.push('/login');
     }
   }, [userAuth, loading, router]);
