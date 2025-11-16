@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "gradeLevel": "อนุบาล 1",
+    "come": { "m": 10, "f": 10 },
+    "notCome": { "m": 1, "f": 0 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 0, "f": 0 },
+    "sick": { "m": 0, "f": 1 },
+    "late": { "m": 1, "f": 0 }
+  },
+  {
+    "id": 2,
+    "gradeLevel": "อนุบาล 2",
+    "come": { "m": 11, "f": 9 },
+    "notCome": { "m": 0, "f": 1 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 0, "f": 1 },
+    "sick": { "m": 1, "f": 0 },
+    "late": { "m": 0, "f": 0 }
+  },
+  {
+    "id": 3,
+    "gradeLevel": "อนุบาล 3",
+    "come": { "m": 9, "f": 10 },
+    "notCome": { "m": 1, "f": 0 },
+    "absent": { "m": 0, "f": 1 },
+    "leave": { "m": 0, "f": 0 },
+    "sick": { "m": 0, "f": 0 },
+    "late": { "m": 0, "f": 0 }
+  },
+  {
+    "id": 4,
+    "gradeLevel": "ป.1",
+    "come": { "m": 12, "f": 13 },
+    "notCome": { "m": 0, "f": 1 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 1, "f": 0 },
+    "sick": { "m": 0, "f": 1 },
+    "late": { "m": 0, "f": 0 }
+  },
+  {
+    "id": 5,
+    "gradeLevel": "ป.2",
+    "come": { "m": 13, "f": 12 },
+    "notCome": { "m": 0, "f": 0 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 0, "f": 0 },
+    "sick": { "m": 1, "f": 0 },
+    "late": { "m": 1, "f": 0 }
+  },
+  {
+    "id": 6,
+    "gradeLevel": "ป.3",
+    "come": { "m": 10, "f": 14 },
+    "notCome": { "m": 0, "f": 0 },
+    "absent": { "m": 1, "f": 0 },
+    "leave": { "m": 0, "f": 0 },
+    "sick": { "m": 0, "f": 1 },
+    "late": { "m": 0, "f": 1 }
+  },
+  {
+    "id": 7,
+    "gradeLevel": "ป.4",
+    "come": { "m": 15, "f": 13 },
+    "notCome": { "m": 0, "f": 1 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 0, "f": 0 },
+    "sick": { "m": 0, "f": 0 },
+    "late": { "m": 0, "f": 0 }
+  },
+  {
+    "id": 8,
+    "gradeLevel": "ป.5",
+    "come": { "m": 14, "f": 14 },
+    "notCome": { "m": 1, "f": 0 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 0, "f": 1 },
+    "sick": { "m": 0, "f": 0 },
+    "late": { "m": 0, "f": 0 }
+  },
+  {
+    "id": 9,
+    "gradeLevel": "ป.6",
+    "come": { "m": 13, "f": 12 },
+    "notCome": { "m": 0, "f": 1 },
+    "absent": { "m": 0, "f": 0 },
+    "leave": { "m": 1, "f": 0 },
+    "sick": { "m": 1, "f": 0 },
+    "late": { "m": 0, "f": 0 }
+  }
+]
