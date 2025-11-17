@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import { useAppStore } from "@/store/appState";
 
 type MenuItem = {
   id: string;
@@ -17,6 +18,7 @@ type MenuItem = {
 }
 
 export default function Home() {
+  const isDark = useAppStore((state) => state.isDark);
   const { userAuth, loading } = useAuth();
   const [menu, setMenu] = useState<MenuItem[]>([]);
   const router = useRouter();
@@ -27,13 +29,14 @@ export default function Home() {
   }, [userAuth]);
 
   const handleLogout = async () => {
-    const result = await Swal.fire({
+    await Swal.fire({
       icon: 'question',
       title: 'ยืนยันการออกจากระบบ',
       text: 'คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?',
       showCancelButton: true,
       confirmButtonText: 'ออกจากระบบ',
       cancelButtonText: 'ยกเลิก',
+      theme: isDark ? 'dark' : 'light',
       preConfirm: async () => {
         Swal.showLoading();
         try {
@@ -46,17 +49,34 @@ export default function Home() {
             icon: 'error',
             title: 'เกิดข้อผิดพลาด',
             text: 'ไม่สามารถออกจากระบบได้',
+            theme: isDark ? 'dark' : 'light',
           });
         }
       },
-    });
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'success',
+          title: 'ออกจากระบบเรียบร้อย',
+          theme: isDark ? 'dark' : 'light',
+          showConfirmButton: false,
+          timer: 1500
+
+        }).then(() => {
+          localStorage.removeItem('access_token');
+          router.push('/login');
+          router.refresh();
+        })
+
+      }
+    })
   }
 
-  if (loading) return <div className="flex item-center justify-center h-screen">
+  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
     <div>Loading...</div>
-    <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div>
+    {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
   </div>
-  if (!userAuth) return <div className="flex item-center justify-center h-screen">
+  if (!userAuth) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
     <div>Unauthorized</div>
     <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div>
   </div>

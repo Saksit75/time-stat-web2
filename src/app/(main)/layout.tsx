@@ -14,7 +14,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [userAuth, loading, router]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">Loading...</div>;
 
   return (
     <>

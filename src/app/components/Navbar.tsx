@@ -9,7 +9,6 @@ import axios from "axios"
 import Swal from "sweetalert2"
 import { UserCircle2 } from "lucide-react"
 import { useAppStore } from "@/store/appState"
-import { a } from "framer-motion/client"
 type MenuItem = {
     label: string
     link?: string
@@ -54,7 +53,8 @@ const Navbar = () => {
                     icon: 'success',
                     title: 'ออกจากระบบเรียบร้อย',
                     theme: isDark ? 'dark' : 'light',
-                    confirmButtonText: 'ตกลง',
+                    showConfirmButton: false,
+                    timer: 1500
 
                 }).then(() => {
                     localStorage.removeItem('access_token');
@@ -112,7 +112,7 @@ const Navbar = () => {
 
     }, [userId])
 
-    if (!userId) return <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-500/30 via-gray-400/30 to-gray-500/30 backdrop-blur-xs flex items-center justify-between py-2 px-6 shadow-lg z-50"></div>
+    if (!userId) return <div  className="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-500/30 via-gray-400/30 to-gray-500/30 backdrop-blur-xs flex items-center justify-between py-2 px-6 shadow-lg z-50 min-h-[56px]"></div>
     return (
         <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-500/30 via-gray-400/30 to-gray-500/30 backdrop-blur-xs flex items-center justify-between py-2 px-6 shadow-lg z-50">
             <Link href="/" className="tracking-wide"><img src="/favicon.ico" alt="" className="w-10 h-10" /></Link>
