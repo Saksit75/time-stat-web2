@@ -37,6 +37,7 @@ const Teachers = () => {
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
 
 
@@ -69,13 +70,14 @@ const Teachers = () => {
 
   const fetchTeachers = async () => {
     try {
+      setLoading(true);
       const params: any = {
         page: page,
         limit: itemsPerPage,
       };
       const resTeachers = await Axios.get("/teachers", { params });
-       const teacherData = resTeachers.data?.data || [];
-        const mapTeacher = teacherData.teachers.map((teacher: any, idx: number) => ({
+      const teacherData = resTeachers.data?.data || [];
+      const mapTeacher = teacherData.teachers.map((teacher: any, idx: number) => ({
         index: (Number(teacherData.currentPage) - 1) * Number(teacherData.limit) + (idx + 1),
         id: teacher.id,
         title: teacher.title_relation?.title_th || "-",
@@ -89,6 +91,8 @@ const Teachers = () => {
     } catch (error) {
       console.error("Error fetching teachers:", error);
       setTeacherList([]);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -108,17 +112,25 @@ const Teachers = () => {
       <div className="text-end">
         <Link href="/teachers/new" className="btn btn-primary !rounded-box gap-2"> <Plus className="w-4 h-4" /> เพิ่ม</Link>
       </div>
-      <DataTable
-        headers={headers}
-        items={items}
-        actions={tableActions}
-        currentPage={page}
-        totalPages={totalPages}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setPage}
-        onItemsPerPageChange={setItemsPerPage}
-        perPageOptions={[10, 20, 50, 100, 200,300]}
-      />
+      {loading ? (
+        <div className="flex justify-center items-center py-12">
+          <span className="loading loading-spinner loading-lg"></span>
+          <p className="ml-4 text-lg">กำลังโหลดข้อมูล...</p>
+        </div>
+      ) : (
+        <DataTable
+          headers={headers}
+          items={items}
+          actions={tableActions}
+          currentPage={page}
+          totalPages={totalPages}
+          itemsPerPage={itemsPerPage}
+          onPageChange={setPage}
+          onItemsPerPageChange={setItemsPerPage}
+          perPageOptions={[10, 20, 50, 100, 200, 300]}
+        />
+      )}
+
     </div>
   );
 };

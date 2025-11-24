@@ -5,6 +5,7 @@ import { Eye, Edit, Plus, ArrowUp10, UsersRound } from "lucide-react";
 import Link from "next/link";
 import Axios from "@/lib/axios";
 import { useEffect, useState } from "react";
+import { s } from "framer-motion/client";
 
 // ✅ Type ของ student
 type Student = {
@@ -63,6 +64,7 @@ const Students = () => {
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   // Table headers
   const headers: HeaderTable[] = [
@@ -97,6 +99,7 @@ const Students = () => {
   ]
   const fetchStudents = async () => {
     try {
+      setLoading(true);
       const params: any = {
         page: page,
         limit: itemsPerPage,
@@ -125,6 +128,8 @@ const Students = () => {
     } catch (error) {
       console.error("Error fetching students:", error);
       setStudents([]);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -133,7 +138,7 @@ const Students = () => {
 
   useEffect(() => {
     fetchStudents();
-  }, [page,itemsPerPage]);
+  }, [page, itemsPerPage]);
 
 
   return (
@@ -153,18 +158,26 @@ const Students = () => {
           <Plus className="w-4 h-4" /> เพิ่ม
         </Link>
       </div>
+      {loading ? (
+        <div className="flex justify-center items-center py-12">
+          <span className="loading loading-spinner loading-lg"></span>
+          <p className="ml-4 text-lg">กำลังโหลดข้อมูล...</p>
+        </div>
+      ) : (
+        <DataTable
+          headers={headers}
+          items={items}
+          actions={tableActions}
+          currentPage={page}
+          totalPages={totalPages}
+          itemsPerPage={itemsPerPage}
+          onPageChange={setPage}
+          onItemsPerPageChange={setItemsPerPage}
+          perPageOptions={[10, 20, 50, 100, 200, 300]}
+        />
+      )}
 
-      <DataTable
-        headers={headers}
-        items={items}
-        actions={tableActions}
-        currentPage={page}
-        totalPages={totalPages}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setPage}
-        onItemsPerPageChange={setItemsPerPage}
-        perPageOptions={[ 10, 20, 50, 100,200,300]}
-      />
+
     </div>
   );
 };
