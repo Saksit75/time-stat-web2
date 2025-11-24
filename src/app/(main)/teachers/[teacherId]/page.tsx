@@ -89,12 +89,19 @@ export default function TeacherView() {
     fetchTeacher();
   }, [teacherId, router]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!teacher) return <div>No teacher data</div>;
+  if (loading) return
+  <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+    <div>Loading...</div>
+    {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
+  </div>
+  // if (!teacher) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+  //   <div></div>
+  //   {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
+  // </div>
 
-  const teacherPhoto = teacher.photo || null;
+  const teacherPhoto = teacher?.photo || null;
 
-  const statusColor = (status: string) => {
+  const statusColor = (status?: string) => {
     switch (status) {
       case "in":
         return "bg-green-500 text-white";
@@ -147,12 +154,12 @@ export default function TeacherView() {
                 </h2>
                 <p
                   className={`inline-block px-3 py-1 rounded-full font-medium ${statusColor(
-                    teacher.status
+                    teacher?.status
                   )}`}
                 >
-                  {teacher.status === "in"
+                  {teacher?.status === "in"
                     ? "อยู่"
-                    : teacher.status === "out"
+                    : teacher?.status === "out"
                     ? "ออก"
                     : "ไม่ระบุ"}
                 </p>
@@ -164,13 +171,13 @@ export default function TeacherView() {
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">คำนำหน้า</span>
                     <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                      {teacher.title}
+                      {teacher?.title}
                     </p>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">ชื่อ</span>
                     <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                      {teacher.firstName}
+                      {teacher?.firstName}
                     </p>
                   </div>
                 </div>
@@ -178,15 +185,15 @@ export default function TeacherView() {
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">สกุล</span>
                     <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                      {teacher.lastName}
+                      {teacher?.lastName}
                     </p>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">เพศ</span>
                     <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                      {teacher.gender === "m"
+                      {teacher?.gender === "m"
                         ? "ชาย"
-                        : teacher.gender === "f"
+                        : teacher?.gender === "f"
                         ? "หญิง"
                         : "-"}
                     </p>
@@ -201,13 +208,13 @@ export default function TeacherView() {
                 <div className="flex-1 flex flex-col gap-2">
                   <span className="font-semibold">ประจำชั้น</span>
                   <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                    {teacher.classLevel}
+                    {teacher?.classLevel}
                   </p>
                 </div>
                 <div className="flex-1 flex flex-col gap-2">
                   <span className="font-semibold">ประจำวิชา</span>
                   <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                    {teacher.subject}
+                    {teacher?.subject}
                   </p>
                 </div>
               </div>
@@ -219,13 +226,13 @@ export default function TeacherView() {
                 <div className="flex-1 flex flex-col gap-2">
                   <span className="font-semibold">เบอร์โทร</span>
                   <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                    {teacher.phone}
+                    {teacher?.phone}
                   </p>
                 </div>
                 <div className="flex-1 flex flex-col gap-2">
                   <span className="font-semibold">รหัสบัตรประชาชน</span>
                   <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                    {teacher.idCard}
+                    {teacher?.idCard}
                   </p>
                 </div>
               </div>
@@ -233,7 +240,7 @@ export default function TeacherView() {
                 <div className="flex-1 flex flex-col gap-2">
                   <span className="font-semibold">Username</span>
                   <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">
-                    {teacher.username}
+                    {teacher?.username}
                   </p>
                 </div>
               </div>
@@ -245,7 +252,7 @@ export default function TeacherView() {
                 <FileText className="w-5 h-5" /> รายละเอียดเพิ่มเติม
               </h2>
               <p className="bg-base-100 p-4 rounded border min-h-[100px]">
-                {teacher.detail || "-"}
+                {teacher?.detail || "-"}
               </p>
             </div>
 

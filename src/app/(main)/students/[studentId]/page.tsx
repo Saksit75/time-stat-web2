@@ -84,10 +84,17 @@ export default function StudentView() {
     fetchStudent();
   }, [studentId, router]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!student) return <div>No student data</div>;
+  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+    <div>Loading...</div>
+    {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
+  </div>
+  // if (!student) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+  //      <div>No student data</div>
+  //   {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
+  // </div>
 
-  const statusColor = (status: string) => {
+
+  const statusColor = (status?: string) => {
     switch (status) {
       case "in": return "bg-green-500 text-white";
       case "out": return "bg-red-500 text-white";
@@ -118,7 +125,7 @@ export default function StudentView() {
             {/* รูปนักเรียน */}
             <div className="flex flex-col items-center">
               <div className="w-40 h-40 border rounded overflow-hidden bg-base-100 flex items-center justify-center">
-                {student.photo ? (
+                {student?.photo ? (
                   <img src={student.photo} alt="รูปนักเรียน" className="w-full h-full object-cover" />
                 ) : (
                   <span className="text-gray-400 text-sm">เพิ่มรูป</span>
@@ -132,8 +139,8 @@ export default function StudentView() {
                 <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
                   <User className="w-5 h-5" /> ข้อมูลนักเรียน
                 </h2>
-                <p className={`inline-block px-3 py-1 rounded-full font-medium ${statusColor(student.status)}`}>
-                  {student.status === "in" ? "อยู่" : student.status === "out" ? "ออก" : "-"}
+                <p className={`inline-block px-3 py-1 rounded-full font-medium ${statusColor(student?.status)}`}>
+                  {student?.status === "in" ? "อยู่" : student?.status === "out" ? "ออก" : "-"}
                 </p>
               </div>
 
@@ -141,31 +148,31 @@ export default function StudentView() {
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">คำนำหน้า</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.title}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.title}</p>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">ชื่อ</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.firstName}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.firstName}</p>
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row gap-4 mt-2">
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">สกุล</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.lastName}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.lastName}</p>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">เพศ</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.gender}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.gender}</p>
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row gap-4 mt-2">
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">เลขประชาชน</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.idCard}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.idCard}</p>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
                     <span className="font-semibold">เลขประจำตัวนักเรียน</span>
-                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.studentId}</p>
+                    <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.studentId}</p>
                   </div>
                 </div>
               </div>
@@ -176,11 +183,11 @@ export default function StudentView() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <span className="font-semibold">ชั้นเรียน</span>
-                  <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.classLevel}</p>
+                  <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.classLevel}</p>
                 </div>
                 <div>
                   <span className="font-semibold">เลขที่</span>
-                  <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student.studentNumber}</p>
+                  <p className="mt-1 bg-base-100 p-2 rounded border min-h-[42px]">{student?.studentNumber}</p>
                 </div>
               </div>
             </div>
@@ -190,7 +197,7 @@ export default function StudentView() {
               <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2 border-b pb-2">
                 <FileText className="w-5 h-5" /> รายละเอียดเพิ่มเติม
               </h2>
-              <p className="bg-base-100 p-4 rounded border min-h-[100px]">{student.detail}</p>
+              <p className="bg-base-100 p-4 rounded border min-h-[100px]">{student?.detail}</p>
             </div>
 
             {/* Action Button */}
