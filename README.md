@@ -35,7 +35,7 @@ A complete student attendance tracking system with backend API, PDF/Excel export
 
 ## ⚙️ Installation Guide
 
-### 1️⃣ Clone & Install Backend
+### 1. Clone & Install Backend
 
 Download the backend from the repository below:
 
@@ -51,7 +51,7 @@ Follow the backend README to:
 
 ---
 
-### 2️⃣ Configure Frontend
+### 2. Configure Frontend
 
 Create a `.env` file at the root of your frontend project:
 
@@ -62,8 +62,22 @@ Example:
 
 NEXT_PUBLIC_API_URL="http://localhost:5000"
 
+### 3. Install Packages
 
-3️⃣ Run Frontend Development Server
+Install all dependencies for the frontend project:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+
+### 4. Run Frontend Development Server
 
 Use any package manager:
 ```
