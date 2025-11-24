@@ -28,7 +28,8 @@ A complete student attendance tracking system with backend API, PDF/Excel export
 - Node.js (Express)
 - Prisma ORM
 - TiDB / MySQL
-- PDFKit (with Thai fonts)
+- PDFKit
+- Exceljs
 
 ---
 
