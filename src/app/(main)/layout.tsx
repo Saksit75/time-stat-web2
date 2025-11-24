@@ -14,7 +14,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [userAuth, loading, router]);
 
-  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">Loading...</div>;
+  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+    <div>Loading...</div>
+    {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
+  </div>
 
   return (
     <>
