@@ -1,7 +1,6 @@
 # 🕒 Time Stat – Student Attendance Tracking System
 
 A complete student attendance tracking system with backend API, PDF/Excel export, and a modern **Next.js frontend interface**.  
-Supports **Thai language PDF export** with embedded **Sarabun fonts**.
 
 ---
 
@@ -10,7 +9,7 @@ Supports **Thai language PDF export** with embedded **Sarabun fonts**.
 - 📝 Record daily student attendance
 - 👀 View history and details per student
 - 📊 Monthly/Yearly summary report
-- 📄 Export PDF (Thai Sarabun font supported)
+- 📄 Export PDF
 - 📁 Export Excel
 - 🎨 Clean UI with animations
 - ⚙️ Separate Backend API & Frontend App
