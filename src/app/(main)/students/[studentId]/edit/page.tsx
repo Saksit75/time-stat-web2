@@ -143,18 +143,18 @@ const StudentEdit = () => {
             theme: isDark ? "dark" : "light",
             allowOutsideClick: () => !Swal.isLoading(),
             preConfirm: async () => {
-                Swal.showLoading(); // แสดง loading
+                Swal.showLoading();
 
                 const data = new FormData();
                 data.append("status", formData.status?.toLowerCase() || "");
                 data.append("title", String(formData.title));
-                data.append("first_name", formData.firstName);
-                data.append("last_name", formData.lastName);
+                data.append("first_name", formData.firstName || "");
+                data.append("last_name", formData.lastName || "");
                 data.append("gender", formData.gender?.toLowerCase() || "");
                 data.append("id_card", formData.idCard || "");
                 data.append("student_id", formData.studentId || "");
-                data.append("class_level", String(formData.classLevel));
-                data.append("student_number", String(formData.studentNumber));
+                data.append("class_level", String(formData.classLevel || ""));
+                data.append("student_number", String(formData.studentNumber || ""));
                 data.append("detail", formData.detail || "");
 
                 if (formData.photo instanceof File) {
@@ -165,12 +165,23 @@ const StudentEdit = () => {
                     const res = await Axios.put(`/students/${studentId}`, data, {
                         headers: { "Content-Type": "multipart/form-data" },
                     });
-                    return res.data; // ส่งผลลัพธ์กลับให้ Swal รู้ว่าเรียบร้อย
+                    return res.data; // ส่งผลลัพธ์กลับให้ Swal
                 } catch (err: any) {
-                    // แสดงข้อความ error ใน Swal
-                    Swal.showValidationMessage(
-                        `เกิดข้อผิดพลาด: ${err.response?.data?.message || err.message}`
-                    );
+                    let errorText = err.response?.data?.message || "เกิดข้อผิดพลาดไม่ทราบสาเหตุ";
+
+                    const errors = err.response?.data?.errors;
+                    if (errors) {
+                        if (Array.isArray(errors)) {
+                            errorText += "\n" + errors.map((e: any) => `• ${e.message}`).join("\n");
+                        } else if (typeof errors === "object") {
+                            errorText += "\n" + Object.values(errors).map((msg: any) => `• ${msg}`).join("\n");
+                        }
+                    }
+
+                    Swal.showValidationMessage(errorText);
+
+                    // return false เพื่อบอก Swal ว่ามี error
+                    return false;
                 }
             }
         });
@@ -184,6 +195,7 @@ const StudentEdit = () => {
             }).then(() => router.push("/students"));
         }
     };
+
 
 
 

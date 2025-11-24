@@ -93,7 +93,7 @@ const StudentNew = () => {
       theme: isDark ? "dark" : "light",
       allowOutsideClick: () => !Swal.isLoading(),
       preConfirm: async () => {
-        Swal.showLoading(); // แสดง loading
+        Swal.showLoading();
 
         const data = new FormData();
         data.append("status", formData.status || "");
@@ -115,20 +115,27 @@ const StudentNew = () => {
           const res = await Axios.post("/students", data, {
             headers: { "Content-Type": "multipart/form-data" },
           });
-          return res.data; // ส่งผลลัพธ์กลับให้ Swal
+          return res.data;
         } catch (err: any) {
-          // แสดง validation errors ของ field
-          const errors = err.response?.data?.errors;
           let errorText = err.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้";
 
-          if (errors && Array.isArray(errors)) {
-            const fieldErrors = errors.map((e: any) => `• ${e.message}`).join("\n");
-            errorText += "\n" + fieldErrors;
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            // ตรวจสอบทั้ง array และ object
+            if (Array.isArray(errors)) {
+              errorText += "\n" + errors.map((e: any) => `• ${e.message}`).join("\n");
+            } else if (typeof errors === "object") {
+              errorText += "\n" + Object.values(errors).map((msg: any) => `• ${msg}`).join("\n");
+            }
           }
 
+          // แสดง validation message
           Swal.showValidationMessage(errorText);
+
+          // return false เพื่อบอก Swal ว่าเกิด error
+          return false;
         }
-      }
+      },
     });
 
     if (result.isConfirmed) {
@@ -140,6 +147,7 @@ const StudentNew = () => {
       }).then(() => router.push("/students"));
     }
   };
+
 
 
   const statusColor = (status: string) => {
