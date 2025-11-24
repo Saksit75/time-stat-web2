@@ -117,6 +117,8 @@ const StudentNew = () => {
           });
           return res.data;
         } catch (err: any) {
+          alert("ไม่สามารถบันทึกข้อมูลได้ " + err);
+          return
           let errorText = err.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้";
 
           const errors = err.response?.data?.errors;
