@@ -117,24 +117,17 @@ const StudentNew = () => {
           });
           return res.data;
         } catch (err: any) {
-          alert("ไม่สามารถบันทึกข้อมูลได้ " + err);
-          return
-          let errorText = err.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้";
-
-          const errors = err.response?.data?.errors;
+          let errorText = err.response?.data?.error || err.response?.data?.message || "เกิดข้อผิดพลาดไม่ทราบสาเหตุ";
+          const errors = err.response?.data?.error;
           if (errors) {
-            // ตรวจสอบทั้ง array และ object
             if (Array.isArray(errors)) {
-              errorText += "\n" + errors.map((e: any) => `• ${e.message}`).join("\n");
+              errorText += "\n" + errors.map((e: any) => `• ${e.message || JSON.stringify(e)}`).join("\n");
             } else if (typeof errors === "object") {
               errorText += "\n" + Object.values(errors).map((msg: any) => `• ${msg}`).join("\n");
             }
           }
 
-          // แสดง validation message
           Swal.showValidationMessage(errorText);
-
-          // return false เพื่อบอก Swal ว่าเกิด error
           return false;
         }
       },
@@ -146,6 +139,7 @@ const StudentNew = () => {
         title: "บันทึกสำเร็จ",
         text: "ข้อมูลนักเรียนถูกบันทึกเรียบร้อยแล้ว",
         theme: isDark ? "dark" : "light",
+        confirmButtonText: "ตกลง",
       }).then(() => router.push("/students"));
     }
   };

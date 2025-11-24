@@ -153,7 +153,8 @@ const handleSubmit = async (e: React.FormEvent) => {
             icon: "success",
             title: "บันทึกสำเร็จ",
             text: "ข้อมูลบุคลากรถูกบันทึกเรียบร้อยแล้ว",
-            theme: isDark ? "dark" : "light"
+            theme: isDark ? "dark" : "light",
+            confirmButtonText: "ตกลง",
         }).then(() => router.push("/teachers"));
     }
 };
@@ -202,7 +203,6 @@ return (
                 onSubmit={handleSubmit}
                 className="flex flex-col bg-base-100 rounded-lg shadow-xl overflow-hidden w-full max-w-3xl"
             >
-                {/* Title Bar */}
                 <div className="bg-gradient-to-r from-primary to-secondary p-6 flex flex-col gap-1">
                     <h1 className="text-3xl font-bold text-white flex items-center gap-3">
                         <User className="w-8 h-8" />
@@ -211,10 +211,7 @@ return (
                     <p className="text-white/80">กรอกข้อมูลบุคลากรใหม่</p>
                 </div>
 
-                {/* Form Section */}
                 <div className="p-8 flex flex-col gap-8 bg-base-300">
-
-                    {/* รูปบุคลากร */}
                     <div className="flex flex-col items-center gap-2">
                         <label htmlFor="teacherPhoto" title="คลิกเพื่อเลือกรูปภาพ" className="w-40 h-40 border rounded overflow-hidden bg-base-100 flex items-center justify-center cursor-pointer">
                             {formData.photo ? (
@@ -227,7 +224,6 @@ return (
                                 <span className="text-gray-400 text-sm">เลือกรูป</span>
                             )}
                         </label>
-
                         <input
                             type="file"
                             id="teacherPhoto"
@@ -236,8 +232,6 @@ return (
                             className="hidden"
                         />
                     </div>
-
-                    {/* ข้อมูลส่วนตัว */}
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center border-b pb-2">
                             <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
@@ -272,7 +266,6 @@ return (
                                     ))}
                                 </select>
                             </div>
-
                             <div className="flex-1 flex flex-col gap-2">
                                 <span className="font-semibold">ชื่อ <span className="text-red-500">*</span></span>
                                 <input
@@ -285,7 +278,6 @@ return (
                                 />
                             </div>
                         </div>
-
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 flex flex-col gap-2">
                                 <span className="font-semibold">นามสกุล <span className="text-red-500">*</span></span>
@@ -314,8 +306,6 @@ return (
                             </div>
                         </div>
                     </div>
-
-                    {/* ข้อมูลการทำงาน/ตำแหน่ง */}
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center border-b pb-2">
                             <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2">
@@ -354,8 +344,6 @@ return (
                             </div>
                         </div>
                     </div>
-
-                    {/* ข้อมูลติดต่อ */}
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 flex flex-col gap-2">
@@ -382,8 +370,6 @@ return (
                             </div>
                         </div>
                     </div>
-
-                    {/* ข้อมูล Account */}
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 flex flex-col gap-2">
@@ -417,8 +403,6 @@ return (
                                     </div> */}
                         </div>
                     </div>
-
-                    {/* Password */}
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="flex-1 flex flex-col gap-2">
                             <span className="font-semibold">Password</span>
@@ -460,8 +444,6 @@ return (
                             </div>
                         </div>
                     </div>
-
-                    {/* รายละเอียดเพิ่มเติม */}
                     <div className="flex flex-col gap-2">
                         <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2 border-b pb-2">
                             <FileText className="w-5 h-5" /> รายละเอียดเพิ่มเติม
@@ -473,8 +455,6 @@ return (
                             className="bg-base-100 p-4 rounded border w-full resize-none min-h-[100px]"
                         />
                     </div>
-
-                    {/* Action Buttons */}
                     <div className="flex gap-4">
                         <Link href="/teachers" className="btn flex-1 !rounded-box">
                             ยกเลิก
@@ -489,8 +469,6 @@ return (
 
                 </div>
             </form>
-
-            {/* Helper Text */}
             <div className="flex justify-center text-sm text-gray-500">
                 <span className="text-red-500">*</span> ระบุข้อมูลที่จำเป็นต้องกรอก
             </div>

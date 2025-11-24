@@ -94,8 +94,6 @@ const TeacherEdit = () => {
         };
         fetchTeacher();
     }, [teacherId]);
-
-    // ✅ โหลดคำนำหน้า
     useEffect(() => {
         const fetchTitles = async () => {
             try {
@@ -107,8 +105,6 @@ const TeacherEdit = () => {
         };
         fetchTitles();
     }, []);
-
-    // ✅ โหลดระดับชั้น
     useEffect(() => {
         const fetchClassLevels = async () => {
             try {
@@ -121,14 +117,12 @@ const TeacherEdit = () => {
         fetchClassLevels();
     }, []);
 
-    // ✅ handle change
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
-
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -145,7 +139,6 @@ const TeacherEdit = () => {
             return;
         }
 
-        // ถ้าไฟล์ถูกต้อง → เก็บไว้ใน state
         setFormData(prev => ({ ...prev, photo: file }));
     };
 
@@ -159,8 +152,6 @@ const TeacherEdit = () => {
 
 const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // ตรวจสอบความถูกต้องเบื้องต้นก่อน Swal
     if (formData.password && !formData.username) {
         Swal.fire({
             icon: "error",
@@ -230,6 +221,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             title: "บันทึกสำเร็จ",
             text: "ข้อมูลครูถูกอัปเดตเรียบร้อยแล้ว",
             theme: isDark ? "dark" : "light",
+            confirmButtonText: "ตกลง",
         }).then(() => router.push("/teachers"));
     }
 };
@@ -524,6 +516,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                     </div>
                 </div>
             </form>
+            <div className="flex justify-center text-sm text-gray-500">
+                <span className="text-red-500">*</span> ระบุข้อมูลที่จำเป็นต้องกรอก
+            </div>
         </div>
     );
 };
