@@ -89,11 +89,11 @@ export default function TeacherView() {
     fetchTeacher();
   }, [teacherId, router]);
 
-  if (loading) return
-  <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
+  if (loading) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
     <div>Loading...</div>
     {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
   </div>
+  
   // if (!teacher) return <div className="flex flex-col items-center gap-2 justify-center h-screen text-xl">
   //   <div></div>
   //   {/* <div><Link href="/login" className="link link-hover text-primary">Go to Login</Link></div> */}
