@@ -1,10 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🕒 Time Stat – Student Attendance Tracking System
 
-## Getting Started
+A complete student attendance tracking system with backend API, PDF/Excel export, and a modern **Next.js frontend interface**.  
+Supports **Thai language PDF export** with embedded **Sarabun fonts**.
 
-First, run the development server:
+---
 
-```bash
+## ✨ Features
+
+- 📝 Record daily student attendance
+- 👀 View history and details per student
+- 📊 Monthly/Yearly summary report
+- 📄 Export PDF (Thai Sarabun font supported)
+- 📁 Export Excel
+- 🎨 Clean UI with animations
+- ⚙️ Separate Backend API & Frontend App
+
+---
+
+## 🚀 Tech Stack
+
+**Frontend**
+
+- Next.js 15
+- Tailwind CSS + DaisyUI
+
+**Backend**
+
+- Node.js (Express)
+- Prisma ORM
+- TiDB / MySQL
+- PDFKit (with Thai fonts)
+
+---
+
+## ⚙️ Installation Guide
+
+### 1️⃣ Clone & Install Backend
+
+Download the backend from the repository below:
+
+🔗 [Backend Repository](https://github.com/Saksit75/time-stat-api2)
+
+Follow the backend README to:
+
+- Install dependencies
+- Configure `.env`
+- Set up the database
+- Run Prisma migration
+- Start the backend server
+
+---
+
+### 2️⃣ Configure Frontend
+
+Create a `.env` file at the root of your frontend project:
+
+
+`NEXT_PUBLIC_API_URL="<YOUR_BACKEND_API_URL>"`
+
+Example:
+
+NEXT_PUBLIC_API_URL="http://localhost:5000"
+
+
+3️⃣ Run Frontend Development Server
+
+Use any package manager:
+```
 npm run dev
 # or
 yarn dev
@@ -13,24 +75,5 @@ pnpm dev
 # or
 bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open your browser at:
+🔗 http://localhost:3000
