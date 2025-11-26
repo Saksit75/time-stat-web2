@@ -11,7 +11,6 @@ A complete student attendance tracking system with backend API, PDF/Excel export
 - 📊 Monthly/Yearly summary report
 - 📄 Export PDF
 - 📁 Export Excel
-- 🎨 Clean UI with animations
 - ⚙️ Separate Backend API & Frontend App
 
 ---
