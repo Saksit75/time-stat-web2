@@ -7,7 +7,6 @@ A complete student attendance tracking system with backend API, PDF/Excel export
 ## ✨ Features
 
 - 📝 Record daily student attendance
-- 👀 View history and details per student
 - 📊 Monthly/Yearly summary report
 - 📄 Export PDF
 - 📁 Export Excel
